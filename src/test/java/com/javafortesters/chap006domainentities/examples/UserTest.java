@@ -54,4 +54,16 @@ public class UserTest {
                 "pa55w0rd",
                 user.getPassword());
     }
+
+    @Test
+    public void canSetPasswordAfterConstructed(){
+
+        User user = new User("bob", "password");
+
+        user.setPassword("paZZw0rd6");
+
+        assertEquals("password changed through setter",
+                "paZZw0rd6",
+                user.getPassword());
+    }
 }
