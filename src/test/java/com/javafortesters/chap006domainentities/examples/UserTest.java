@@ -67,3 +67,4 @@ public class UserTest {
                 user.getPassword());
     }
 }
+;
