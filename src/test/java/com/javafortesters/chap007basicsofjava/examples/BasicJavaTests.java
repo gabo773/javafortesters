@@ -30,4 +30,15 @@ public class BasicJavaTests {
 
         assertEquals("bcd", aString.substring(1,4));
     }
+
+    @Test
+    public void exploreStringClass(){
+        String s = "this is a string";
+        s += " and more";
+        s = "this is a whole different string";
+        System.out.println(s);
+
+        char a = '\u00c2';
+        System.out.println(a);
+    }
 }

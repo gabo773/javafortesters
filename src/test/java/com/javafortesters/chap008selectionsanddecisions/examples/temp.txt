@@ -1,0 +1,10 @@
+Create a method which uses a switch statement to return a String depending on the shortCode passed in
+as a parameter to the method:
+given “UK” return “United Kingdom”
+given “US” return “United States”
+given “USA” return “United States”
+given “FR” return “France”
+given “SE” return “Sweden”
+given any other value, return “Rest Of World”
+For bonus points, make the short code case insensitive i.e. “uK”, “UK”, “Uk”, “uk” should all return
+“United Kingdom”e
