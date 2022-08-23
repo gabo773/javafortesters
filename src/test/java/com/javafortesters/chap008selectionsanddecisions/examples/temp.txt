@@ -1,10 +1,12 @@
-Create a method which uses a switch statement to return a String depending on the shortCode passed in
-as a parameter to the method:
-given “UK” return “United Kingdom”
-given “US” return “United States”
-given “USA” return “United States”
-given “FR” return “France”
-given “SE” return “Sweden”
-given any other value, return “Rest Of World”
-For bonus points, make the short code case insensitive i.e. “uK”, “UK”, “Uk”, “uk” should all return
-“United Kingdom”e
+Create a method which uses a switch statement to
+return a String representing the int passed in as
+a parameter to the method:
+given 1 return "One"
+given 2 return "Two"
+given 3 return "Three"
+given 4 return "Four"
+given an integer > 4, return "Too big"
+given an integer < 1, return "Too small"
+As an experiment, also write the method such that
+every case in the switch is implemented as a return
+so no variables or break statements are used.
