@@ -3,6 +3,7 @@ package com.javafortesters.chap009arraysandforloops.examples;
 import com.javafortesters.domainentities.User;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
@@ -106,4 +107,30 @@ public class TestArraysForLoops {
         return firstLetter+restOfWord;
     }
 
+    public void print2DIntArray(int multi[][]){
+        for(int outer[] : multi){
+            if(outer == null){
+                System.out.print("null");
+            }else{
+                for(int inner : outer){
+                    System.out.print(inner + ",");
+                }
+            }
+            System.out.println("");
+        }
+    }
+
+    @Test
+    public void triangleOfIntArray(){
+        int multi[][] = new int[16][];
+
+        for(int i=0; i<multi.length; i++){
+            multi[i] = new int[i+1];
+            for(int j=0; j<multi[i].length; j++) {
+                multi[i][j] = j;
+            }
+        }
+
+        print2DIntArray(multi);
+    }
 }
