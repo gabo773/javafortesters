@@ -122,6 +122,7 @@ public class TestArraysForLoops {
 
     @Test
     public void triangleOfIntArray(){
+
         int multi[][] = new int[16][];
 
         for(int i=0; i<multi.length; i++){
