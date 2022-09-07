@@ -1,10 +1,12 @@
 package com.javafortesters.chap010introducingcollections.examples;
 
 import com.javafortesters.domainentities.User;
+import com.javafortesters.domainobject.DeckOfCards;
 import org.junit.Test;
 
 import java.util.*;
 
+import static com.javafortesters.domainobject.DeckOfCards.dealHand;
 import static org.junit.Assert.*;
 
 public class TestCollectionsFirstPhase {
@@ -12,7 +14,7 @@ public class TestCollectionsFirstPhase {
     @Test
     public void whileLoopForLoop(){
 
-        String workdays[] = {"Monday", "Tuesday"
+        String[] workdays = {"Monday", "Tuesday"
                 ,"Wednesday", "Thursday", "Friday"
                 };
 
@@ -142,6 +144,83 @@ public class TestCollectionsFirstPhase {
             swap(list, i-1, rnd.nextInt(i));
         }
     }
+
+    @Test
+    public void exploreListIterators(){
+        List<Integer> aList = new ArrayList<>();
+        for(int i =0; i <10; i++){
+            aList.add(i);
+        }
+    ListIterator<Integer> it = aList.listIterator(1);
+    System.out.println(it.hasPrevious());
+    System.out.println(it.hasNext());
+    System.out.println(it.previous().intValue());
+    //System.out.println(it.previous().intValue());
+    System.out.println(it.next());
+    System.out.println(it.next());
+    assertTrue(it.hasPrevious());
+    assertTrue(it.hasNext());
+    }
+
+    @Test
+    public void findIndexInList(){
+        List<Integer> integers = new ArrayList<>();
+        for(int i=0; i<100; i++){
+            integers.add(i);
+        }
+
+        Collections.shuffle(integers, new Random());
+        //integers.add(146);
+        int findInteger = 19;
+        int getIntegerIndex = -1 ;
+        for(int i = 0; i<=integers.size(); i+=10){
+            if(getIntegerIndex != -1){
+                break;
+            }
+            getIntegerIndex = integers.subList(0,i).indexOf(findInteger);
+        }
+
+    System.out.println(integers.get(99));
+    System.out.println(integers.get(0));
+    System.out.println(getIntegerIndex);
+
+    }
+    
+    @Test
+    public void dealHandTest(){
+        List<Integer> deck = new ArrayList<>();
+        for(int i=0; i<100; i++){
+            deck.add(i);
+        }
+        Collections.shuffle(deck, new Random());
+        List<Integer> firstHand = dealHand(deck, 5);
+
+        assertEquals(5, firstHand.size());
+        assertEquals(95, deck.size());
+    }
+
+    @Test
+    public void dealDeckOfCards(){
+
+        List<String> deck = DeckOfCards.createDeckOfCards();
+        Collections.shuffle(deck);
+
+        assertEquals(52, deck.size());
+
+        int numHands = 4;
+        int cardsPerHand = 5;
+
+        if(numHands*cardsPerHand > deck.size()){
+            System.out.println("Not enough cards");
+            return;
+        }
+
+        for(int i = 0; i<numHands; i++){
+            System.out.println(dealHand(deck, cardsPerHand));
+        }
+
+    }
+
 
 }
 
