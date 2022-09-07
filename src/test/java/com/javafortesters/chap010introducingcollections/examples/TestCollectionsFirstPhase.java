@@ -221,6 +221,31 @@ public class TestCollectionsFirstPhase {
 
     }
 
+    @Test
+    public void listOfUsers() {
+        List<User> usersList = new ArrayList<User>();
+
+        assertTrue(usersList.isEmpty());
+
+        User gabo = new User("gabo", "password");
+        User morciu = new User("morciu", "pa55w0rd");
+
+        usersList.add(gabo);
+        assertEquals(1, usersList.size());
+        assertTrue(usersList.contains(gabo));
+
+        usersList.add(0, morciu);
+        assertEquals(2, usersList.size());
+        assertEquals(0, usersList.indexOf(morciu));
+        assertEquals(1, usersList.indexOf(gabo));
+
+        usersList.remove(0);
+        assertEquals(1, usersList.size());
+        assertFalse(usersList.contains(morciu));
+        assertTrue(usersList.contains(gabo));
+        assertEquals(0, usersList.indexOf(gabo));
+    }
+
 
 }
 
