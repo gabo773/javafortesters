@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.*;
 
+import static com.javafortesters.domainobject.DeckOfCards.createDeckOfCards;
 import static com.javafortesters.domainobject.DeckOfCards.dealHand;
 import static org.junit.Assert.*;
 
@@ -246,6 +247,42 @@ public class TestCollectionsFirstPhase {
         assertEquals(0, usersList.indexOf(gabo));
     }
 
+    @Test
+    public void findDups(){
+        String args = "i came i saw i moved";
 
+        SortedSet<String> uniques = new TreeSet<String>();
+        Set<String> duplicates = new HashSet<String>();
+
+        String[] argsArray = args.split(" ");
+
+        for(String a : argsArray){
+            if(!uniques.add(a)){
+                duplicates.add(a);
+            }
+        }
+
+        System.out.println(uniques);
+        System.out.println("Duplicate words: " + duplicates);
+    }
+
+    @Test
+    public void setOfUsers(){
+        Set<User> setOfUsers = new HashSet<User>();
+        User gabo = new User("gabo", "password");
+
+        setOfUsers.add(gabo);
+        setOfUsers.add(gabo);
+
+        assertEquals(1, setOfUsers.size());
+        assertTrue(setOfUsers.contains(gabo));
+
+        User morciu = new User("morciu", "pa55w0rd");
+        setOfUsers.add(morciu);
+
+        assertEquals(2, setOfUsers.size());
+        assertTrue(setOfUsers.contains(morciu));
+
+    }
 }
 
