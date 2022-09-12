@@ -284,5 +284,24 @@ public class TestCollectionsFirstPhase {
         assertTrue(setOfUsers.contains(morciu));
 
     }
+
+    @Test
+    public void mapOfUsers(){
+        Map<Integer, User> mapOfUsers = new HashMap<Integer, User>();
+        User gabo = new User("gabo", "password");
+        User morciu = new User("morciu", "pa55w0rd");
+
+        mapOfUsers.put(1, gabo);
+        assertEquals(1, mapOfUsers.size());
+        assertTrue(mapOfUsers.containsKey(1));
+        assertTrue(mapOfUsers.containsValue(gabo));
+
+        mapOfUsers.put(1, morciu);
+        assertEquals(1, mapOfUsers.size());
+        assertTrue(mapOfUsers.containsKey(1));
+        assertFalse(mapOfUsers.containsKey(2));
+        assertTrue(mapOfUsers.containsValue(morciu));
+        assertFalse(mapOfUsers.containsValue(gabo));
+    }
 }
 
