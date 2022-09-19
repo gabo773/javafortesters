@@ -2,6 +2,7 @@ package com.javafortesters.chap010introducingcollections.examples;
 
 import com.javafortesters.domainentities.User;
 import com.javafortesters.domainobject.DeckOfCards;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.*;
@@ -303,5 +304,123 @@ public class TestCollectionsFirstPhase {
         assertTrue(mapOfUsers.containsValue(morciu));
         assertFalse(mapOfUsers.containsValue(gabo));
     }
+
+    @Test
+    public void exploringMapCollection(){
+        Map<Integer, User> mapOfUsers = new HashMap<Integer, User>();
+
+        //User users[] = new User[10];
+        for(int i=0; i<10; i++){
+            int userID = i+1;
+            String username = "user"+userID;
+            String password = "password"+userID;
+            mapOfUsers.put(i, new User(username, password));
+        }
+
+        assertEquals(10, mapOfUsers.size());
+        assertEquals("user10", mapOfUsers.get(9).getUsername());
+        assertEquals("password10", mapOfUsers.get(9).getPassword());
+        assertEquals("user1", mapOfUsers.get(0).getUsername());
+        assertEquals("password1", mapOfUsers.get(0).getPassword());
+
+        Map<String, String> usernames = new HashMap<>();
+        for(int i=0 ; i<10; i++){
+            String key = "username"+i;
+            String name = "username"+i;
+            usernames.put(key, name);
+        }
+
+        assertEquals(10, usernames.size());
+        assertEquals("username1", usernames.get("username1"));
+
+        Set<Map.Entry<String, String>> entries = usernames.entrySet();
+        assertEquals(10, entries.size());
+        for( Map.Entry<String, String> entry : entries){
+            entry.setValue("bob");
+        }
+
+        assertEquals("bob", usernames.get("username3"));
+
+    }
+
+    @Test
+    public void ferq(){
+        Map<String, Integer> frequencyOfWords = new HashMap<>();
+        String text = "if it is to be it is up to me to delegate";
+        for(String word : text.split(" ")){
+            Integer freq = frequencyOfWords.get(word);
+            frequencyOfWords.put(word, (freq == null) ? 1 : freq + 1);
+        }
+
+        System.out.println(frequencyOfWords.size() + " distinct words:");
+        System.out.println(frequencyOfWords);
+
+        Map<String, Integer> copy = new TreeMap<>(frequencyOfWords);
+        assertEquals(8, copy.size());
+        assertTrue(copy.containsKey("to"));
+        assertEquals(3, copy.get("to").intValue());
+
+        for(String key : copy.keySet()){
+            System.out.println(copy.get(key));
+        }
+
+        for(Iterator<String> it = copy.keySet().iterator(); it.hasNext();){
+            if(!it.next().isEmpty()){
+                it.remove();
+            }
+        }
+
+        assertEquals(0, copy.size());
+        assertEquals(8, frequencyOfWords.size());
+
+    }
+
+    @Test
+    public void testRequiredField(){
+        Set<String> requiredAttrs = new HashSet<>();
+        requiredAttrs.add("username");
+        requiredAttrs.add("password");
+
+        Set<String> permittedAttrs = new HashSet<>(requiredAttrs);
+        permittedAttrs.add("email_address");
+        permittedAttrs.add("github_user");
+
+        Map<String, String> userData = new HashMap<>();
+        userData.put("username", "gabo");
+        userData.put("password", "password");
+        userData.put("email_address", "morckyga@gmail.com");
+        userData.put("github_user", "gabo773");
+
+        assertTrue(validate(userData, requiredAttrs, permittedAttrs));
+
+        Map<String, String> newUserData = new HashMap<>();
+        newUserData.put("username", "morciu");
+        newUserData.put("homeTown", "Sighet");
+
+        assertFalse(validate(newUserData, requiredAttrs, permittedAttrs));
+
+        }
+
+    private static <K, V> boolean validate(Map<K, V> attrMap, Set<K> requiredAttrs, Set<K> permittedAttrs) {
+        boolean valid = true;
+        Set<K> attrs = attrMap.keySet();
+
+        if(! attrs.containsAll(requiredAttrs)){
+            Set<K> missing = new HashSet<>(requiredAttrs);
+            missing.removeAll(attrs);
+            System.out.println("Missing attributes: " + missing);
+            valid = false;
+        }
+
+        if(! permittedAttrs.containsAll(attrs)){
+            Set<K> illegal = new HashSet<>(attrs);
+            illegal.removeAll(permittedAttrs);
+            System.out.println("Illegal attributes: " + illegal);
+            valid = false;
+        }
+
+        return valid;
+    }
+
 }
 
