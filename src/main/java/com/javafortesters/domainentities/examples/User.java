@@ -1,4 +1,4 @@
-package com.javafortesters.domainentities;
+package com.javafortesters.domainentities.examples;
 
 public class User {
     private String username;
@@ -8,7 +8,7 @@ public class User {
         this("username", "password");
     }
 
-    public User(String username, String password) {
+    public User(String username, String password){
         this.username = username;
         setPassword(password);
     }
@@ -21,7 +21,7 @@ public class User {
         return username;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password){
 
         if(password.length()<7){
             throw new IllegalArgumentException("password must be > 6 chars");

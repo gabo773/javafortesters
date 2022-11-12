@@ -1,7 +1,6 @@
 package com.javafortesters.chap011exceptions.examples;
 
-import com.javafortesters.domainentities.User;
-import org.junit.Assert;
+import com.javafortesters.domainentities.examples.User;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

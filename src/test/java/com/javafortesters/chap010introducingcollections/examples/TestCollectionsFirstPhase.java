@@ -1,13 +1,11 @@
 package com.javafortesters.chap010introducingcollections.examples;
 
-import com.javafortesters.domainentities.User;
+import com.javafortesters.domainentities.examples.User;
 import com.javafortesters.domainobject.DeckOfCards;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.*;
 
-import static com.javafortesters.domainobject.DeckOfCards.createDeckOfCards;
 import static com.javafortesters.domainobject.DeckOfCards.dealHand;
 import static org.junit.Assert.*;
 
