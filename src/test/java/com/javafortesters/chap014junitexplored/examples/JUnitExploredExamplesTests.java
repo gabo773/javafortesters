@@ -2,10 +2,7 @@ package com.javafortesters.chap014junitexplored.examples;
 
 import com.javafortesters.domainentities.exceptions.InvalidPassword;
 import com.javafortesters.domainentities.exceptions.User;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -21,9 +18,19 @@ public class JUnitExploredExamplesTests {
         System.out.println("@BeforeClass method");
     }
 
+    @AfterClass
+    public static void runOncePerClassAfterAllTests(){
+        System.out.println("@AfterClass method");
+    }
+
     @Before
     public void runBeforeEveryTestMethod(){
         System.out.println("@Before each method");
+    }
+
+    @After
+    public void runAfterEveryTestMethod(){
+        System.out.println("@After each method");
     }
 
     @Test
@@ -39,6 +46,12 @@ public class JUnitExploredExamplesTests {
         expected.expect(InvalidPassword.class);
         expected.expectMessage(containsString("> 6 chars"));
         User user = new User("username", "<6");
+    }
+
+    @Ignore("Testing the @Ignore annotation")
+    @Test
+    public void thisTestIsIgnored(){
+        System.out.println("This test is ignored");
     }
 
 }
