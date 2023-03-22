@@ -6,6 +6,8 @@ import org.junit.*;
 import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertThrows;
 
 public class JUnitExploredExamplesTests {
@@ -52,6 +54,11 @@ public class JUnitExploredExamplesTests {
     @Test
     public void thisTestIsIgnored(){
         System.out.println("This test is ignored");
+    }
+
+    @Test
+    public void junitAssertionsWithMatchers(){
+        assertThat(3+3, is(6));
     }
 
 }
