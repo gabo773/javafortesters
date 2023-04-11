@@ -23,12 +23,20 @@ public class User {
     }
 
     public void setPassword(String password) throws InvalidPassword{
+        String mustIncludeDigit = ".*[0123456789]+.*";
+        String mustIncludeUpperCase = ".*[A-Z]+.*";
 
         if (password.length()<6){
             throw new InvalidPassword("Pass must be > 6 chars");
         }
-        this.password = password;
+        if(!password.matches(mustIncludeDigit)){
+            throw new InvalidPassword("Pass must contain a digit");
+        }
+        if(!password.matches(mustIncludeUpperCase)){
+            throw new InvalidPassword("Pass must contain an upper case");
+        }
 
+        this.password = password;
     }
 
     public String getUsername(){
