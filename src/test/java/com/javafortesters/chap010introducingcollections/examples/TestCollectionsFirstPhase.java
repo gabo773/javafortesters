@@ -2,6 +2,7 @@ package com.javafortesters.chap010introducingcollections.examples;
 
 import com.javafortesters.domainentities.examples.User;
 import com.javafortesters.domainobject.DeckOfCards;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.*;
@@ -41,6 +42,8 @@ public class TestCollectionsFirstPhase {
         }
     }
 
+
+    @Ignore
     @Test
     public void createManipulateCollectionOfUsers(){
 

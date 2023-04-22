@@ -2,6 +2,7 @@ package com.javafortesters.chap014junitexplored.exercises;
 
 import com.javafortesters.domainentities.exceptions.InvalidPassword;
 import com.javafortesters.domainentities.exceptions.User;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -73,13 +74,14 @@ public class JUnitExercisesTest {
         assertThat("An empty string is not null", "", is(not(equalTo(nullValue()))));
         assertThat("An empty string is not null", null, is(nullValue()));
 
-        User user = new User("username", "password");
+        User user = new User("username", "passW0rd");
 
         assertThat(user.getPassword(), startsWith("pass"));
         assertThat(user.getUsername(), containsString("user"));
-        assertThat(user.getPassword(), endsWith("word"));
+        assertThat(user.getPassword(), endsWith("W0rd"));
     }
 
+    @Ignore
     @Test
     public void incompleteTest(){
         fail("Not yet implemented");

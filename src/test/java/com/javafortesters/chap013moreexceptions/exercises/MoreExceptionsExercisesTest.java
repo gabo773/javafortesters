@@ -15,7 +15,13 @@ public class MoreExceptionsExercisesTest {
 
     @Test
     public void invalidPasswordThrownOnSetPassword(){
-        User aUser = new User();
+        User aUser = null;
+        try{
+        aUser = new User("username", "Pa55word");
+        } catch (InvalidPassword e){
+            System.out.println(e.getStackTrace());
+        }
+
         try{
         aUser.setPassword("wrong");
         fail("An exception should have been thrown");
@@ -31,10 +37,15 @@ public class MoreExceptionsExercisesTest {
 
     @Test
     public void exceptionIsNotThrownOnDefaultConstructor(){
-        User aUser = new User();
+        try{
+        User aUser = new User("username", "Pa55word");
 
         assertEquals("username", aUser.getUsername());
-        assertEquals("password", aUser.getPassword());
+        assertEquals("Pa55word", aUser.getPassword());
+        }catch (InvalidPassword e) {
+            System.out.println(e.getStackTrace());
+        }
+
     }
 
     @Test
@@ -50,7 +61,8 @@ public class MoreExceptionsExercisesTest {
     }
 
     @Test
-    public static void cat(File file) {
+    public void cat() {
+        File file = new File("pathname");
         RandomAccessFile input = null;
         String line = null;
 

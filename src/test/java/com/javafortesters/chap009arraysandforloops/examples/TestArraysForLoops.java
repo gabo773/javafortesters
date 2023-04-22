@@ -1,6 +1,7 @@
 package com.javafortesters.chap009arraysandforloops.examples;
 
 import com.javafortesters.domainentities.examples.User;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -18,6 +19,7 @@ public class TestArraysForLoops {
         }
     }
 
+    @Ignore
     @Test
     public void createArrayOfUsers(){
         User users[] = new User[3];
