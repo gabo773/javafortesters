@@ -2,6 +2,8 @@ package com.javafortesters.chap017datesandtimes.exercises;
 
 import org.junit.Test;
 
+import java.util.Calendar;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DatesAndTimesExercisesTests {
@@ -40,5 +42,11 @@ public class DatesAndTimesExercisesTests {
         assertThat(userId.length()).isEqualTo(initialUserID.length());
 
         System.out.println(userId);
+    }
+
+    @Test
+    public void canUseToStringOnCalendarObject(){
+        Calendar cal = Calendar.getInstance();
+        System.out.println(cal.toString());
     }
 }
