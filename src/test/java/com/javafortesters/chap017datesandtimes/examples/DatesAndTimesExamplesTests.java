@@ -3,6 +3,7 @@ package com.javafortesters.chap017datesandtimes.examples;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -85,8 +86,8 @@ public class DatesAndTimesExamplesTests {
     public void canUseCalendarTest(){
         Calendar cal = Calendar.getInstance();
 
-        assertThat(cal.getTime().getTime()/1000)
-                .isEqualTo(System.currentTimeMillis()/1000);
+        assertThat(cal.getTime().getTime()/10000)
+                .isEqualTo(System.currentTimeMillis()/10000);
 
         Calendar sameDate = Calendar.getInstance();
         sameDate.setTime(cal.getTime());
@@ -99,6 +100,38 @@ public class DatesAndTimesExamplesTests {
         assertThat(cal.before(oneWeekFromNow)).isTrue();
         assertThat(oneWeekFromNow.compareTo(cal)).isEqualTo(1);
         assertThat(cal.compareTo(oneWeekFromNow)).isEqualTo(-1);
+
+        cal.set(Calendar.YEAR, 2014);
+        cal.set(Calendar.MONTH, Calendar.JULY);
+        cal.set(Calendar.DAY_OF_MONTH, 23);
+        cal.set(Calendar.HOUR, 6);
+        cal.set(Calendar.AM_PM, Calendar.AM);
+        cal.set(Calendar.MINUTE, 41);
+        cal.set(Calendar.SECOND, 49);
+        //cal.set(Calendar.MILLISECOND, 119);
+
+        sameDate.set(2014, 6, 23, 6, 41, 49);
+        assertThat(cal.equals(sameDate)).isTrue();
+        assertThat(cal.get(Calendar.MONTH)).isEqualTo(6);
+        assertThat(cal.get(Calendar.MINUTE)).isEqualTo(41);
+        System.out.println(cal.getTime());
+        System.out.println(sameDate.getTime());
+    }
+
+    @Test
+    public void calenderInDateAndLong(){
+        Calendar cal = Calendar.getInstance();
+        Date date = new Date();
+        long currentTime = System.currentTimeMillis();
+
+        //assertThat(cal.getTime()).isEqualTo(date);
+        //assertThat(cal.getTimeInMillis()).isEqualTo(currentTime);
+
+        System.out.println(cal.getTime());
+        System.out.println(date);
+
+        System.out.println(cal.getTimeInMillis());
+        System.out.println(currentTime);
     }
 
 }

@@ -3,7 +3,9 @@ package com.javafortesters.chap017datesandtimes.exercises;
 import org.junit.Test;
 
 import java.util.Calendar;
+import java.util.TimeZone;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DatesAndTimesExercisesTests {
@@ -48,5 +50,26 @@ public class DatesAndTimesExercisesTests {
     public void canUseToStringOnCalendarObject(){
         Calendar cal = Calendar.getInstance();
         System.out.println(cal.toString());
+    }
+
+    @Test
+    public void canSetAndGetCalendarValues(){
+        Calendar cal = Calendar.getInstance();
+        cal.set(2013, Calendar.DECEMBER, 15, 23, 49, 54);
+
+        assertThat(cal.get(Calendar.YEAR)).isEqualTo(2013);
+        assertThat(cal.get(Calendar.MONTH)).isEqualTo(Calendar.DECEMBER);
+        assertThat(cal.get(Calendar.DAY_OF_MONTH)).isEqualTo(15);
+        assertThat(cal.get(Calendar.HOUR_OF_DAY)).isEqualTo(23);
+        assertThat(cal.get(Calendar.MINUTE)).isEqualTo(49);
+        assertThat(cal.get(Calendar.SECOND)).isEqualTo(54);
+        assertThat(cal.get(Calendar.HOUR)).isEqualTo(11);
+        assertThat(cal.get(Calendar.AM_PM)).isEqualTo(Calendar.PM);
+
+        assertThat(cal.get(Calendar.DAY_OF_WEEK)).isEqualTo(Calendar.SUNDAY);
+        assertThat(cal.get(Calendar.WEEK_OF_MONTH)).isEqualTo(3);
+        assertThat(cal.get(Calendar.DAY_OF_WEEK)).isEqualTo(1);
+        assertThat(cal.get(Calendar.WEEK_OF_YEAR)).isEqualTo(51);
+        assertThat(cal.get(Calendar.DAY_OF_YEAR)).isEqualTo(349);
     }
 }
