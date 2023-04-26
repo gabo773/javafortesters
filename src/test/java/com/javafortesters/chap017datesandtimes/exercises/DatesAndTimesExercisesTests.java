@@ -72,4 +72,30 @@ public class DatesAndTimesExercisesTests {
         assertThat(cal.get(Calendar.WEEK_OF_YEAR)).isEqualTo(51);
         assertThat(cal.get(Calendar.DAY_OF_YEAR)).isEqualTo(349);
     }
+
+    @Test
+    public void canModifyDateWithAddAndRoll(){
+        Calendar cal = Calendar.getInstance();
+
+        cal.set(2013, Calendar.DECEMBER, 23, 21, 25);
+        cal.add(Calendar.YEAR, -2);
+        cal.add(Calendar.MONTH, -6);
+        cal.add(Calendar.DAY_OF_MONTH, -12);
+
+        assertThat(cal.get(Calendar.YEAR)).isEqualTo(2011);
+        assertThat(cal.get(Calendar.MONTH)).isEqualTo(5);
+        assertThat(cal.get(Calendar.DAY_OF_MONTH)).isEqualTo(11);
+
+        cal.set(2013, Calendar.DECEMBER, 23, 21, 25);
+        cal.roll(Calendar.DAY_OF_MONTH, 17);
+        assertThat(cal.get(Calendar.YEAR)).isEqualTo(2013);
+        assertThat(cal.get(Calendar.MONTH)).isEqualTo(11);
+        assertThat(cal.get(Calendar.DAY_OF_MONTH)).isEqualTo(9);
+
+        cal.set(2013, Calendar.DECEMBER, 23, 21, 25);
+        cal.add(Calendar.DAY_OF_MONTH, 17);
+        assertThat(cal.get(Calendar.YEAR)).isEqualTo(2014);
+        assertThat(cal.get(Calendar.MONTH)).isEqualTo(0);
+        assertThat(cal.get(Calendar.DAY_OF_MONTH)).isEqualTo(9);
+    }
 }
