@@ -25,4 +25,21 @@ public class MathAndBigDecimalExamplesTest {
         assertThat(bdTotal).isEqualTo(new BigDecimal("0.83"));
     }
 
+    @Test
+    public void canReturnMaxFromArray(){
+        int[] intArray = {0,4,3,5,1,2,9,6,7,8};
+
+        assertThat(returnMaxFromArray(intArray)).isEqualTo(9);
+    }
+
+    private int returnMaxFromArray(int[] intArray) {
+        int maxInt = 0;
+
+        for (int i: intArray) {
+           maxInt = Math.max(i, maxInt);
+            }
+        
+        return maxInt;
+    }
+
 }

@@ -30,6 +30,20 @@ public class MathAndBigDecimalExercisesTest {
                 .divide(new BigDecimal("2")));
 
         assertThat(aBigDecimal).isEqualTo(new BigDecimal(5));
+    }
 
+    @Test
+    public void compareTenAndOne(){
+        BigDecimal ten = BigDecimal.TEN;
+        BigDecimal one = BigDecimal.ONE;
+
+        assertThat(ten.compareTo(one) > 0).isTrue();
+        assertThat(ten.compareTo(one) < 0).isFalse();
+        assertThat(one.compareTo(ten) < 0).isTrue();
+        assertThat(one.compareTo(BigDecimal.ONE)).isEqualTo(0);
+        assertThat(ten.compareTo(BigDecimal.TEN)).isEqualTo(0);
+        assertThat(one.compareTo(ten) == 0).isFalse();
+        assertThat((ten.compareTo(one)>0) || (ten.compareTo(one) == 0)).isTrue();
+        assertThat((one.compareTo(ten)<0) || (one.compareTo(ten)==0)).isTrue();
     }
 }
