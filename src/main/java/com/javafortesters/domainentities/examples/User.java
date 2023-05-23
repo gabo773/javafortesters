@@ -22,11 +22,6 @@ public class User {
     }
 
     public void setPassword(String password){
-
-        if(password.length()<7){
-            throw new IllegalArgumentException("password must be > 6 chars");
-        }
-
         this.password = password;
     }
 
