@@ -1,10 +1,13 @@
 package com.javafortesters.chap021recollections.exercises;
 
 import com.javafortesters.domainentities.DupeUserComparator;
+import com.javafortesters.domainentities.UserComparator;
 import com.javafortesters.domainentities.examples.User;
 import org.junit.Test;
 
+import java.util.SortedMap;
 import java.util.SortedSet;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,5 +39,29 @@ public class ReCollectionsExercises {
         assertThat(users[1].getUsername()).isEqualTo("gab");
         assertThat(users[2].getUsername()).isEqualTo("Marian");
         assertThat(users[3].getUsername()).isEqualTo("CPop");
+    }
+
+    @Test
+    public void createSortedSetFromSortedMapKeys(){
+        SortedMap<User, String> userSortedMap = new TreeMap<>(new UserComparator());
+
+        User bob = new User("Bob", "pa55w0rd");
+        User richie = new User("Richie", "RichieRichieRich");
+        User tiny = new User("Tiny", "TinyTime");
+        User sun = new User("sun", "tzu");
+        User mrBeer = new User("Stafford", "sys");
+
+        userSortedMap.put(bob, "Bob the user");
+        userSortedMap.put(richie, "Rich Richie");
+        userSortedMap.put(tiny, "Tiny Tim");
+        userSortedMap.put(sun, "Warfare art");
+        userSortedMap.put(mrBeer, "Cybernetician");
+
+        User[] users = new User[userSortedMap.size()];
+        userSortedMap.keySet().toArray(users);
+
+        for (User user : users) {
+            System.out.println(user.getUsername());
+            }
     }
 }
